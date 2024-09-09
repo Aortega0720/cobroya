@@ -3,7 +3,6 @@ const profileService = require('../services/profileService');
 class ProfileController {
   async create(req, res) {
     try {
-      console.log("Entro al crear perfil",req.body);
       const profile = await profileService.createProfile(req.body);
       res.status(201).json(profile);
     } catch (error) {

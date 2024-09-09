@@ -1,13 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const {profileController , newjwt} = require('../controllers');
+const profileController = require('../controllers/profileController');
 const authMiddleware = require('../middlewares/authMiddleware');
 
-// router.get('/profiles/token', newjwt.newToken);
-
-router.post('/profiles',profileController.create);
-router.get('/profiles/:id', profileController.getById);
-router.put('/profiles/:id', profileController.update);
-router.delete('/profiles/:id', profileController.delete);
+router.post('/profiles',authMiddleware,profileController.create);
+router.get('/profiles/:id',authMiddleware, profileController.getById);
+router.put('/profiles/:id',authMiddleware, profileController.update);
+router.delete('/profiles/:id',authMiddleware, profileController.delete);
 
 module.exports = router;
